@@ -1,4 +1,4 @@
-export interface PortfolioResult {
+interface PortfolioResult {
   initialInvestment: number;
   currentValue: number;
   profitOrLoss: number;
@@ -16,15 +16,9 @@ export function calculatePortfolioPerformance(
   const percentageChange = (profitOrLoss / initialInvestment) * 100;
 
   const performanceSummary =
-    percentageChange >= 30
-      ? "Excellent performance"
-      : percentageChange >= 10
-      ? "Solid gain"
-      : percentageChange >= 0
-      ? "Minor gain"
-      : percentageChange >= -10
-      ? "Minor loss"
-      : "Significant loss";
+    percentageChange >= 20
+      ? `The portfolio has gained significantly with a profit of $${profitOrLoss}.`
+      : `The portfolio has performed poorly.`;
 
   return {
     initialInvestment,
