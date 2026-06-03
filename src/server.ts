@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { calculatePortfolioPerformance } from "./portfolio/portfolioPerformance";
 
 const app = express();
@@ -6,14 +6,14 @@ const app = express();
 app.use(express.json());
 
 //health check endpoint
-app.get("/health", (req, res) => {
+app.get("/health", (req: Request, res: Response) => {
     res.status(200).json({
         status: "ok"
     });
 });
 
 //Portfolio endpoint
-app.post("/portfolio/performance", (req, res) => {
+app.post("/portfolio/performance", (req: Request, res: Response) => {
     const { initialInvestment, currentValue } = req.body;
 
     const result = calculatePortfolioPerformance(
